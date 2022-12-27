@@ -36,9 +36,15 @@ class Lang(models.Model):
             self.slug = from_cyrillic_to_eng(str(self.name))
         super().save(*args, **kwargs)
 class Vacancy(models.Model):
-    url = models.URLField()
-    title = models.CharField(max_length=250, verbose_name="")
-    company = models.CharField(max_length=50, verbose_name="")
-    description = models.TextField(verbose_name="")
-    city = models.ForeignKey('City', on_delete=models.CASCADE, verbose_name="")
-    language = models.ForeignKey('Lang', on_delete=models.CASCADE, verbose_name="")
+    class Meta:
+        verbose_name = 'Вакансия'
+        verbose_name_plural = 'Вакансии'
+    url = models.URLField(unique=True)
+    title = models.CharField(max_length=250, verbose_name="Заголовок вакнасии")
+    company = models.CharField(max_length=50, verbose_name="Компания")
+    description = models.TextField(verbose_name="Описание вакансии")
+    city = models.ForeignKey('City', on_delete=models.CASCADE, verbose_name="Город")
+    language = models.ForeignKey('Lang', on_delete=models.CASCADE, verbose_name="Язык программирования")
+    timestamp = models.DateField(auto_now_add=True)
+    def __str__(self):
+        return self.title
