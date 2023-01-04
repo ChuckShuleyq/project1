@@ -1,0 +1,8 @@
+{% extends "main.html" %}
+{% block content %}
+<ol>
+    {% for obj in  object_list%}
+    <li>Название Компании: <b>{{obj.company}}</b> <a href="{{obj.url}}">Посмотреть вакансию</a></li>
+    {% endfor %}
+</ol>
+{% endblock content %}

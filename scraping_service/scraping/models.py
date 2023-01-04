@@ -30,11 +30,6 @@ class Lang(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = from_cyrillic_to_eng(str(self.name))
-        super().save(*args, **kwargs)
 class Vacancy(models.Model):
     class Meta:
         verbose_name = 'Вакансия'
@@ -46,5 +41,6 @@ class Vacancy(models.Model):
     city = models.ForeignKey('City', on_delete=models.CASCADE, verbose_name="Город")
     language = models.ForeignKey('Lang', on_delete=models.CASCADE, verbose_name="Язык программирования")
     timestamp = models.DateField(auto_now_add=True)
+    salary = models.CharField(max_length=30, blank=True, verbose_name="Зарплата")
     def __str__(self):
         return self.title
