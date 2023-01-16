@@ -3,6 +3,12 @@
 <ol>
     {% for obj in  object_list%}
     <li>Название Компании: <b>{{obj.company}}</b> <a href="{{obj.url}}">Посмотреть вакансию</a></li>
+    {% empty %}
+    <h1>К сожалению, по вашему запросу ничего не найдено</h1>
     {% endfor %}
 </ol>
+<form method="GET" action="">
+    {{form.as_p}}
+    <button type="submit">Отправить</button>
+</form>
 {% endblock content %}

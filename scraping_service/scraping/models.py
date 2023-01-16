@@ -44,3 +44,4 @@ class Vacancy(models.Model):
     salary = models.CharField(max_length=30, blank=True, verbose_name="Зарплата")
     def __str__(self):
         return self.title
+
